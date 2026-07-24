@@ -1,0 +1,6 @@
+ml/data/
+*.csv
+__pycache__/
+*.pkl
+node_modules/
+.env
