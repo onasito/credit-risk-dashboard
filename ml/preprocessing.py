@@ -65,31 +65,3 @@ def preprocess_data(df, threshold=50, numeric_fill='median', categorical_fill='U
     df, fill_values = impute_missing_values(df,fill_values=fill_values, numeric_fill=numeric_fill, categorical_fill=categorical_fill)
     df, encoders = encode_categorical_columns(df, encoders=encoders)
     return df, dropped_cols, fill_values, encoders
-
-
-if __name__ == "__main__":
-    train_df = pd.read_csv('./data/application_train.csv', nrows=1000)
-    train_df.drop(columns=['SK_ID_CURR'], inplace=True)
-    y = train_df['TARGET']
-    x = train_df.drop(columns=['TARGET'])
-
-    x_train, x_val, y_train, y_val = train_test_split(
-        x, y, test_size=0.2, stratify=y, random_state=42
-    )
-
-    # fit preprocessing on train only
-    x_train_clean, dropped_cols, fill_values, encoders = preprocess_data(x_train)
-
-    x_val_clean, _, _, _ = preprocess_data(
-        x_val, fill_values=fill_values, encoders=encoders, cols_to_drop=dropped_cols
-    )
-
-
-    # print("Initial DataFrame shape:", train_df.shape)
-    # print("Original shape:", train_df.shape)
-    # print("Dropped columns:", list(dropped_cols))
-    # print("Shape after dropping high-missing columns:", train_df.shape[1] - len(dropped_cols))
-    # print("Final cleaned shape:", x_train_clean.shape)
-    # print("Remaining missing values:", x_train_clean.isnull().sum().sum())
-    # print("Data types after encoding:\n", x_train_clean.dtypes.value_counts())
-    # print(x_train_clean.head())
