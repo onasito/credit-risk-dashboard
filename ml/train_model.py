@@ -1,3 +1,6 @@
+import os
+
+import joblib
 import pandas as pd
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
@@ -12,6 +15,9 @@ from feature_engineering import (
     build_credit_card_features,
     build_installments_features,
 )
+
+MODEL_DIR = os.path.join(os.path.dirname(__file__), 'models')
+MODEL_PATH = os.path.join(MODEL_DIR, 'model.pkl')
 
 if __name__ == "__main__":
     train_df = pd.read_csv('./data/application_train.csv')
@@ -72,3 +78,14 @@ if __name__ == "__main__":
     print("\nValidation ROC-AUC:", roc_auc_score(y_val, y_val_proba))
     print("\nClassification report:\n", classification_report(y_val, y_val_pred))
     print("\nConfusion matrix:\n", confusion_matrix(y_val, y_val_pred))
+
+    # --- Persist everything needed to reproduce inference-time preprocessing ---
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    joblib.dump({
+        'model': model,
+        'encoders': encoders,
+        'fill_values': fill_values,
+        'dropped_cols': dropped_cols,
+        'feature_names': x_train_clean.columns.tolist(),
+    }, MODEL_PATH)
+    print(f"\nSaved model bundle to {MODEL_PATH}")
