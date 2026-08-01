@@ -70,6 +70,12 @@ def _load_test_features():
     return _test_features
 
 
+def list_applicant_ids(limit=50, offset=0):
+    """Return a page of SK_ID_CURR values available to browse/predict on."""
+    test_features = _load_test_features()
+    return test_features.index[offset:offset + limit].tolist()
+
+
 def predict_applicant(sk_id_curr):
     """Run the trained model on a single applicant from application_test.csv,
     reproducing the exact preprocessing used at training time."""

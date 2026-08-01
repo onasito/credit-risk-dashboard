@@ -1,8 +1,16 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from predict import predict_applicant
+from predict import predict_applicant, list_applicant_ids
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class PredictRequest(BaseModel):
     SK_ID_CURR: int
@@ -10,6 +18,10 @@ class PredictRequest(BaseModel):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/applicants")
+def applicants(limit: int = Query(50, ge=1, le=500), offset: int = Query(0, ge=0)):
+    return {"applicant_ids": list_applicant_ids(limit=limit, offset=offset)}
 
 @app.post("/predict")
 def predict(request: PredictRequest):
