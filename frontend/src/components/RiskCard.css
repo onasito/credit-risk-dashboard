@@ -1,0 +1,223 @@
+.risk-card {
+  position: relative;
+  width: min(440px, calc(100vw - 64px));
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  box-shadow:
+    0 60px 100px -30px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 480px) {
+  .risk-card {
+    aspect-ratio: auto;
+    min-height: 460px;
+  }
+}
+
+.risk-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.risk-card__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+.risk-card__ref {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--paper-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.risk-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.risk-card__figure {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: clamp(52px, 11vw, 84px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.2s ease;
+}
+
+.risk-card__figure.is-loading {
+  opacity: 0.35;
+}
+
+.risk-card__percent {
+  font-size: 0.4em;
+  margin-left: 4px;
+  color: var(--paper-dim);
+}
+
+.risk-card__figure-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+.risk-card__inline-error {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--paper-dim);
+  max-width: 26ch;
+  margin: 0;
+}
+
+.risk-card__stamp {
+  align-self: center;
+  margin: -6px 0 6px;
+  padding: 8px 22px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--stamp-color);
+  border: 2px solid var(--stamp-color);
+  outline: 1px solid var(--stamp-color);
+  outline-offset: 3px;
+  background: color-mix(in srgb, var(--stamp-color) 12%, transparent);
+  transform: rotate(-4deg);
+}
+
+.risk-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.risk-card__caption {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+.risk-card__nav {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--paper);
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.risk-card__nav:hover:not(:disabled) {
+  border-color: var(--clay);
+  color: var(--clay);
+}
+
+.risk-card__nav:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+.risk-card__nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.risk-card--offline {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.risk-card__offline-title {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--paper);
+}
+
+.risk-card__offline-body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--paper-dim);
+  max-width: 30ch;
+  margin: 0;
+}
+
+.risk-card__button {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--clay);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.risk-card__button:hover {
+  background: color-mix(in srgb, var(--clay) 85%, white);
+}
+
+.risk-card__button:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .risk-card__nav,
+  .risk-card__figure,
+  .risk-card__button {
+    transition: none;
+  }
+}
