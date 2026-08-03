@@ -1,0 +1,35 @@
+:root {
+  --ink: #14110f;
+  --paper: #f6efe6;
+  --paper-dim: rgba(246, 239, 230, 0.62);
+  --clay: #b75d69;
+  --risk-low: #6b8f71;
+  --risk-moderate: #b75d69;
+  --risk-high: #7a2e2e;
+  --hairline: rgba(246, 239, 230, 0.16);
+
+  --display: 'Fraunces', 'Iowan Old Style', ui-serif, Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --sans: 'IBM Plex Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/150% var(--sans);
+  color-scheme: dark;
+  color: var(--paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  box-sizing: border-box;
+}
