@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from predict import predict_applicant, list_applicant_ids
+from predict import predict_applicant, list_applicant_ids, get_applicant_profile
 
 app = FastAPI()
 
@@ -30,5 +30,12 @@ def predict(request: PredictRequest):
     try:
         prediction = predict_applicant(sk_id_curr)
         return prediction
+    except KeyError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+@app.get("/applicants/{sk_id_curr}/profile")
+def applicant_profile(sk_id_curr: int):
+    try:
+        return get_applicant_profile(sk_id_curr)
     except KeyError as e:
         raise HTTPException(status_code=404, detail=str(e))

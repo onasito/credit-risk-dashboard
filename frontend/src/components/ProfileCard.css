@@ -1,0 +1,126 @@
+.profile-card {
+  position: relative;
+  width: min(440px, calc(100vw - 64px));
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  box-shadow:
+    0 60px 100px -30px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.profile-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.profile-card__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+.profile-card__ref {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--paper-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.profile-card__section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-card__section-title {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--clay);
+}
+
+.profile-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.profile-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.profile-card__stat--wide {
+  grid-column: 1 / -1;
+}
+
+.profile-card__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+.profile-card__value {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-card__footer {
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+}
+
+.profile-card__caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+@media (max-width: 900px) {
+  .profile-card {
+    margin-top: 24px;
+  }
+}
+
+.profile-card--offline {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  min-height: 200px;
+}
+
+.profile-card__offline-body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--paper-dim);
+  max-width: 30ch;
+  margin: 0;
+}
