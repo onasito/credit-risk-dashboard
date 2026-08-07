@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../config'
 import './ProfileCard.css'
-
-const API_BASE = 'http://localhost:8000'
 
 interface Profile {
   SK_ID_CURR: number,

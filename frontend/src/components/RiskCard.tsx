@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../config'
 import './RiskCard.css'
-
-const API_BASE = 'http://localhost:8000'
 
 interface Prediction {
   SK_ID_CURR: number
