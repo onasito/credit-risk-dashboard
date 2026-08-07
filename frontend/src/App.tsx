@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import RiskCard from './components/RiskCard'
 import ProfileCard from './components/ProfileCard'
+import { API_BASE } from './config'
 import './App.css'
 
-const API_BASE = 'http://localhost:8000'
 const PAGE_SIZE = 25
 
 function App() {
